@@ -1,0 +1,62 @@
+<html>
+<head>
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="animate.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+	<script type="text/javascript" src="jquery.min.js"></script>
+
+</head>
+<body>
+
+	<div id="app-error"><span id="abc"></span></div>
+
+<input id="b1" type="button" value="clickMe" onClick='abraKaDabra()'></input>
+
+<i class='icon-thumbs-up'></i>
+<i class='icon-ok'></i>
+<script type="text/javascript">
+var notifyErrorEl = $('#app-error');
+var closeBtn = "<i class='icon-ok-circle' ></i>";
+
+var NotifyError = {
+        el: notifyErrorEl,
+        msgEl: notifyErrorEl.find('span'),
+        timer: null,
+        init: function () {
+            var self;
+            self = this;
+            this.msgEl.on('click', function (e) {
+                if ($(e.target).hasClass('btn-close')) {
+                    self.hide();
+                }
+            });
+        },
+        reset: function () {
+            this.msgEl.empty();
+            this.el.removeClass('animated fadeInDown fadeOutUp');
+        },
+        show: function (msg) {
+            this.msgEl.html(msg);
+            this.el.addClass('animated fadeInDown');
+            clearTimeout(this.timer);
+            this.timer = setTimeout(this.hide, 5000);
+        },
+        hide: function () {
+            NotifyError.el.addClass('animated fadeOutUp');
+        }
+    };
+    NotifyError.init();
+    
+    var abraKaDabra=function(){
+     	NotifyError.reset();
+        setTimeout(function () {
+            NotifyError.show(closeBtn+'Question Posted', 200);
+        });
+    }
+        
+
+    
+
+</script>
+</body>
+</html>
